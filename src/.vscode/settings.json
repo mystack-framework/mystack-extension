@@ -1,0 +1,14 @@
+{
+  "php.suggest.basic": false,
+  "intelephense.files.maxSize": 5000000,
+  "intelephense.stubs": [
+    "apache", "bcmath", "bz2", "calendar", "Core", "curl", "date", "dba", "dom", "enchant", "fileinfo", "filter", "ftp", "gd", "gettext", "hash", "iconv", "imap", "intl", "json", "ldap", "libxml", "mbstring", "mcrypt", "mysql", "mysqli", "password", "pcntl", "pcre", "PDO", "pdo_mysql", "pdo_pgsql", "pdo_sqlite", "pgsql", "Phar", "posix", "readline", "recode", "Reflection", "session", "shmop", "SimpleXML", "snmp", "soap", "sockets", "sodium", "SPL", "sqlite3", "standard", "superglobals", "sysvmsg", "sysvsem", "sysvshm", "tidy", "tokenizer", "xml", "xmlreader", "xmlrpc", "xmlwriter", "xsl", "Zend OPcache", "zip", "zlib"
+  ],
+  "intelephense.environment.includePaths": [
+    "./_mystack_stubs.php"
+  ],
+  "tailwindCSS.includeLanguages": {
+    "php": "html"
+  },
+  "editor.snippetSuggestions": "top"
+}

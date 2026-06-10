@@ -1,0 +1,62 @@
+{
+  "scopeName": "source.php.mystack",
+  "injectionSelector": "L:source.php",
+  "patterns": [
+    {
+      "match": "\\b(PHAI|PHAP|PHAU|PHCD|PHCO|PHCS|PHDB|PHDE|PHED|PHEM|PHEV|PHJC|PHJS|PHJT|PHLS|PHML|PHOB|PHOP|PHPA|PHQR|PHRO|PHRQ|PHSE|PHTM|PHTP|PHTR|PHUI|PHVD|DIR|Importer)\\b",
+      "name": "entity.name.class.mystack"
+    },
+    {
+      "match": "\\b(PHUI::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "\\b(PHML::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "\\b(PHJS::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "\\b(PHCS::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "\\b(PHRO::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "\\b(PHDB::[a-zA-Z0-9_]+)\\b",
+      "name": "support.function.mystack"
+    },
+    {
+      "begin": "(\"|')(?:\\s*\\{\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "end": "(?:\\}\\}\\s*)(\\1)",
+      "endCaptures": {
+        "1": {
+          "name": "string.quoted.double.php"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\{\\{[a-zA-Z0-9_\\|]+\\}\\}",
+          "name": "variable.other.mystack"
+        }
+      ]
+    },
+    {
+      "match": "\\{\\{[a-zA-Z0-9_\\|]+\\}\\}",
+      "name": "variable.other.mystack"
+    },
+    {
+      "match": "(?<=tjs\\(['\"])(.*?)(?=['\"]\\))",
+      "name": "string.regexp.mystack"
+    }
+  ]
+}

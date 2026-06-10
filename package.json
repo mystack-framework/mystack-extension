@@ -1,0 +1,53 @@
+{
+    "name": "mystack-helper",
+    "displayName": "Mystack Framework Helper",
+    "description": "The Ultimate, Auto-Healing, Single-Class Oriented PHP Framework Extension. Provides blazing fast autocomplete, snippets, and intelligent hints for MyStack.",
+    "version": "1.0.0",
+    "publisher": "Sakibweb",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "activationEvents": [
+        "onCommand:mystack.init",
+        "onLanguage:php"
+    ],
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "mystack.init",
+                "title": "Mystack: Initialize Workspace"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "php",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/snippets.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "php",
+                "scopeName": "source.php.mystack",
+                "path": "./syntaxes/mystack.tmLanguage.json",
+                "injectTo": [
+                    "source.php"
+                ]
+            }
+        ]
+    },
+    "icon": "icon.png",
+    "author": "Sakibur Rahman",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/devbd24/mystack"
+    }
+}
