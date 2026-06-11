@@ -32,16 +32,6 @@
                 "language": "html",
                 "path": "./snippets/snippets.json"
             }
-        ],
-        "grammars": [
-            {
-                "language": "php",
-                "scopeName": "source.php.mystack",
-                "path": "./syntaxes/mystack.tmLanguage.json",
-                "injectTo": [
-                    "source.php"
-                ]
-            }
         ]
     },
     "icon": "icon.png",
