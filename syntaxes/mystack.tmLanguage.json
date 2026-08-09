@@ -1,0 +1,36 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MyStack Framework",
+  "scopeName": "mystack.injected.php",
+  "injectionSelector": "L:source.php",
+  "patterns": [
+    {
+      "match": "(?i)\\b(DIR|Importer|PHAI|PHAP|PHAU|PHCD|PHCO|PHCS|PHDB|PHDE|PHED|PHEM|PHEV|PHFY|PHJC|PHJS|PHJT|PHLS|PHML|PHMO|PHOB|PHOP|PHPA|PHQR|PHRO|PHRQ|PHSE|PHTM|PHTP|PHTR|PHUI|PHVD)\\b",
+      "name": "support.class.mystack"
+    },
+    {
+      "match": "(?i)\\b(DIR|Importer|PHAI|PHAP|PHAU|PHCD|PHCO|PHCS|PHDB|PHDE|PHED|PHEM|PHEV|PHFY|PHJC|PHJS|PHJT|PHLS|PHML|PHMO|PHOB|PHOP|PHPA|PHQR|PHRO|PHRQ|PHSE|PHTM|PHTP|PHTR|PHUI|PHVD)(::|->)([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+      "captures": {
+        "1": { "name": "support.class.mystack" },
+        "2": { "name": "keyword.operator.mystack" },
+        "3": { "name": "support.function.mystack" }
+      }
+    },
+    {
+      "match": "\\b(import|phml|phjs|tjs)\\s*(?=\\()",
+      "name": "support.function.mystack"
+    },
+    {
+      "match": "(?i)(?<=['\"])(app|component|library|css|js|img|font|cache):[a-zA-Z0-9_.:/-]+(?=['\"])",
+      "name": "string.other.link.mystack"
+    },
+    {
+      "match": "\\{\\{[a-zA-Z_][a-zA-Z0-9_.-]*(?:\\|[^}]*)?\\}\\}",
+      "name": "variable.other.mystack"
+    },
+    {
+      "match": "(?i)\\b(x|phjs|data-phjs|data-action|data-component|data-keymap)-[a-zA-Z0-9_:-]+(?=\\s*=)",
+      "name": "entity.other.attribute-name.mystack"
+    }
+  ]
+}

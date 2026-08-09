@@ -1,0 +1,102 @@
+{
+  "name": "mystack-helper",
+  "displayName": "MyStack Framework Helper",
+  "description": "Official VS Code language support, source-aware stubs, snippets and workspace tools for MyStack Framework.",
+  "version": "1.1.0",
+  "publisher": "Sakibweb",
+  "license": "MIT",
+  "author": {
+    "name": "Sakibur Rahman",
+    "url": "https://github.com/sakibweb"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "mystack",
+    "php",
+    "framework",
+    "phjs",
+    "phui",
+    "phdb",
+    "snippets",
+    "autocomplete"
+  ],
+  "activationEvents": [
+    "onCommand:mystack.init",
+    "onCommand:mystack.refreshStubs",
+    "onCommand:mystack.openDocumentation",
+    "onCommand:mystack.doctor",
+    "onCommand:mystack.smoke",
+    "onLanguage:php"
+  ],
+  "main": "./extension.js",
+  "extensionKind": ["workspace"],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "Snippets and syntax highlighting work; file installation and CLI commands require workspace trust."
+    },
+    "virtualWorkspaces": { "supported": false }
+  },
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mystack-framework/mystack"
+  },
+  "homepage": "https://mystack-framework.github.io/mystack/",
+  "bugs": {
+    "url": "https://github.com/mystack-framework/mystack/issues"
+  },
+  "scripts": {
+    "test": "node scripts/validate.js",
+    "validate": "node scripts/validate.js",
+    "package": "npx @vscode/vsce package --no-dependencies"
+  },
+  "contributes": {
+    "commands": [
+      { "command": "mystack.init", "title": "MyStack: Initialize Workspace", "category": "MyStack" },
+      { "command": "mystack.refreshStubs", "title": "MyStack: Refresh IDE Stubs", "category": "MyStack" },
+      { "command": "mystack.openDocumentation", "title": "MyStack: Open Documentation", "category": "MyStack" },
+      { "command": "mystack.doctor", "title": "MyStack: Run Doctor", "category": "MyStack" },
+      { "command": "mystack.smoke", "title": "MyStack: Run Smoke Test", "category": "MyStack" },
+      { "command": "mystack.showCommands", "title": "MyStack: Show Commands", "category": "MyStack" }
+    ],
+    "configuration": {
+      "title": "MyStack Framework",
+      "properties": {
+        "mystack.stubDirectory": {
+          "type": "string",
+          "default": ".mystack/ide",
+          "scope": "resource",
+          "description": "Workspace-relative directory used for generated MyStack IDE stubs."
+        }
+      }
+    },
+    "snippets": [
+      { "language": "php", "path": "./snippets/snippets.json" },
+      { "language": "html", "path": "./snippets/snippets.json" }
+    ],
+    "grammars": [
+      {
+        "scopeName": "mystack.injected.php",
+        "path": "./syntaxes/mystack.tmLanguage.json",
+        "injectTo": ["source.php"]
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "mystack.init" },
+        { "command": "mystack.refreshStubs" },
+        { "command": "mystack.openDocumentation" },
+        { "command": "mystack.doctor" },
+        { "command": "mystack.smoke" }
+      ]
+    }
+  }
+}
