@@ -142,13 +142,54 @@ function activate(context) {
         vscode.commands.registerCommand('mystack.openDocumentation', () => safely(openDocumentation)),
         vscode.commands.registerCommand('mystack.doctor', () => safely(() => runCliCommand('doctor'))),
         vscode.commands.registerCommand('mystack.smoke', () => safely(() => runCliCommand('smoke'))),
+        vscode.commands.registerCommand('mystack.audit', () => safely(() => runCliCommand('audit'))),
+        vscode.commands.registerCommand('mystack.routes', () => safely(() => runCliCommand('route:list'))),
+        vscode.commands.registerCommand('mystack.serve', () => safely(async () => {
+            const port = await vscode.window.showInputBox({
+                prompt: 'Development server port',
+                value: '8000',
+                validateInput: value => /^\d{4,5}$/.test(value) && Number(value) >= 1024 && Number(value) <= 65535
+                    ? undefined
+                    : 'Enter an integer port between 1024 and 65535.'
+            });
+            if (port) await runCliCommand(`serve ${port}`);
+        })),
+        vscode.commands.registerCommand('mystack.generate', () => safely(async () => {
+            const kinds = ['controller', 'model', 'middleware', 'component', 'view', 'command', 'api', 'service',
+                'job', 'request', 'resource', 'factory', 'migration', 'seeder', 'crud'];
+            const kind = await vscode.window.showQuickPick(
+                kinds.map(name => ({ label: `make:${name}`, name })),
+                { placeHolder: 'Choose a MyStack scaffold type' }
+            );
+            if (!kind) return;
+            const name = await vscode.window.showInputBox({
+                prompt: `Class/file name for make:${kind.name}`,
+                placeHolder: 'Product',
+                validateInput: value => /^[A-Za-z][A-Za-z0-9_]*$/.test(value)
+                    ? undefined
+                    : 'Use an alphanumeric name starting with a letter.'
+            });
+            if (name) await runCliCommand(`make:${kind.name} ${name}`);
+        })),
+        vscode.commands.registerCommand('mystack.cacheClear', () => safely(async () => {
+            const answer = await vscode.window.showWarningMessage(
+                'Clear generated MyStack component cache files (CSS/JS/PHP)? They are rebuilt automatically.',
+                { modal: true }, 'Clear cache'
+            );
+            if (answer === 'Clear cache') await runCliCommand('cache:clear');
+        })),
         vscode.commands.registerCommand('mystack.showCommands', () => safely(async () => {
             const selected = await vscode.window.showQuickPick([
                 { label: '$(tools) Initialize workspace', command: 'mystack.init' },
                 { label: '$(refresh) Refresh IDE stubs', command: 'mystack.refreshStubs' },
                 { label: '$(book) Open documentation', command: 'mystack.openDocumentation' },
                 { label: '$(heart) Run doctor', command: 'mystack.doctor' },
-                { label: '$(beaker) Run smoke test', command: 'mystack.smoke' }
+                { label: '$(beaker) Run smoke test', command: 'mystack.smoke' },
+                { label: '$(checklist) Run audit', command: 'mystack.audit' },
+                { label: '$(add) Generate scaffold', command: 'mystack.generate' },
+                { label: '$(play) Serve dev server', command: 'mystack.serve' },
+                { label: '$(list-tree) List routes', command: 'mystack.routes' },
+                { label: '$(trash) Clear component cache', command: 'mystack.cacheClear' }
             ], { placeHolder: 'MyStack Framework' });
             if (selected) await vscode.commands.executeCommand(selected.command);
         }))

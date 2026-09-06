@@ -2,6 +2,12 @@
 
 All notable extension-package changes are documented here. Package versions describe VS Code extension delivery only; MyStack Framework itself follows a versionless rolling `main` branch.
 
+## 1.2.0
+
+- Added Run Audit, List Routes, Serve Dev Server, Generate Scaffold and Clear Component Cache commands.
+- Extended the status-bar command picker with the new framework actions.
+- Regenerated stubs and snippets from current framework source (4,700+ snippets).
+
 ## 1.1.0
 
 - Rebuilt IDE stubs from current MyStack source and fixed invalid PHP declarations.

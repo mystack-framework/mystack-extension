@@ -17,7 +17,7 @@
       }
     },
     {
-      "match": "\\b(import|phml|phjs|tjs)\\s*(?=\\()",
+      "match": "\\b(import|phml|phjs|tjs|requireDirectory|phml_internal_builder)\\s*(?=\\()",
       "name": "support.function.mystack"
     },
     {

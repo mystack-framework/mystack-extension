@@ -17,6 +17,6 @@ Do not publish exploit details, secrets or private project data in a public issu
 
 - Snippets and grammar highlighting are passive editor metadata.
 - Stub installation writes only inside the explicitly selected workspace.
-- Doctor and Smoke execute only after a user command and require workspace trust.
+- Framework commands (Doctor, Audit, Smoke, Routes, Serve, Generate and Clear cache) execute only after a user command and require workspace trust.
 - The maintainer sync script loads a framework checkout only when explicitly run from a terminal; use it only with trusted source.
 - The extension performs no telemetry or automatic remote request.

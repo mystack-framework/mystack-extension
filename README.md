@@ -7,11 +7,11 @@ MyStack follows the rolling official `main` branch and has no fixed framework ve
 ## Highlights
 
 - Source-derived PHP IDE stubs for all framework libraries, including `PHRO`, `PHDB`, `PHJS`, `PHUI`, `PHAU`, `PHPA`, `PHFY`, `PHMO`, `PHTP` and their public companion classes.
-- 2,400+ snippets covering public framework methods, PHUI components, PHCS utilities, HTML, PHML and canonical bootstrap patterns.
+- 4,700+ snippets covering public framework methods, PHUI components, PHCS utilities, HTML, PHML and canonical bootstrap patterns.
 - MyStack-aware PHP syntax highlighting for framework classes, methods, import paths, placeholders and declarative attributes.
 - Safe multi-root workspace initialization with an atomic stub installation.
 - Intelephense include-path configuration at workspace-folder scope.
-- Commands for opening documentation and explicitly running `mystack doctor` or `mystack smoke`.
+- Commands for opening documentation and explicitly running `mystack doctor`, `audit`, `smoke`, `route:list`, `serve`, `make:*` scaffolds or `cache:clear`.
 - No runtime dependency on Composer, npm packages, Alpine, HTMX, React or Vue.
 
 ## Requirements
@@ -40,7 +40,12 @@ Initialization copies IDE-only metadata to `.mystack/ide/mystack-stubs.php` and 
 | `MyStack: Refresh IDE Stubs` | Recopy the extension's current source-derived stubs. |
 | `MyStack: Open Documentation` | Open local generated docs when available, otherwise open official documentation. |
 | `MyStack: Run Doctor` | Open a dedicated terminal and run `php mystack doctor`. |
+| `MyStack: Run Audit` | Open a dedicated terminal and run `php mystack audit`. |
 | `MyStack: Run Smoke Test` | Open a dedicated terminal and run `php mystack smoke`. |
+| `MyStack: List Routes` | Open a dedicated terminal and run `php mystack route:list`. |
+| `MyStack: Serve Dev Server` | Ask for a port and start `php mystack serve <port>` in a terminal. |
+| `MyStack: Generate Scaffold` | Pick a `make:*` generator, enter a name and run it in a terminal. |
+| `MyStack: Clear Component Cache` | Confirm and run `php mystack cache:clear`. |
 | `MyStack: Show Commands` | Open the compact MyStack command picker from the status bar. |
 
 ## Snippet families

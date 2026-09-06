@@ -292,6 +292,77 @@ class PHDB {
     public static function close() {}
 }
 
+/** Source: library/PHDB.php */
+class PHDB_Driver {
+    public function name(): string {}
+    public function isAvailable(): bool {}
+    public function connect(array $config): void {}
+    public function isConnected(): bool {}
+    public function disconnect(): void {}
+    public function run(string $sql, array $params = []): \PHDB_Result {}
+    public function stream(string $sql, array $params = []): \Generator {}
+    public function quoteIdentifier(string $name): string {}
+    public function tableExists(string $table): bool {}
+    public function columns(string $table): array {}
+    public function primaryKey(string $table): string {}
+    public function uniqueConstraints(string $table): array {}
+    public function normalizeColumn(string $mysqlDefinition): string {}
+    public function createTableSql(string $table, array $definitions): string {}
+    public function begin(): void {}
+    public function commit(): void {}
+    public function rollback(): void {}
+    public function probe(array $config): array {}
+}
+
+/** Source: library/PHDB.php */
+class PHDB_PgsqlDriver {
+    public function name(): string {}
+    public function isAvailable(): bool {}
+    public function connect(array $config): void {}
+    public function isConnected(): bool {}
+    public function disconnect(): void {}
+    public function run(string $sql, array $params = []): \PHDB_Result {}
+    public function stream(string $sql, array $params = []): \Generator {}
+    public function quoteIdentifier(string $name): string {}
+    public function tableExists(string $table): bool {}
+    public function columns(string $table): array {}
+    public function primaryKey(string $table): string {}
+    public function uniqueConstraints(string $table): array {}
+    public function normalizeColumn(string $mysqlDefinition): string {}
+    public function createTableSql(string $table, array $definitions): string {}
+    public function begin(): void {}
+    public function commit(): void {}
+    public function rollback(): void {}
+    public function probe(array $config): array {}
+}
+
+/** Source: library/PHDB.php */
+class PHDB_Result {
+    public function __construct(bool $isSelect, array $rows = [], int $affected = 0, string|int|null $insertId = NULL) {}
+}
+
+/** Source: library/PHDB.php */
+class PHDB_SqliteDriver {
+    public function name(): string {}
+    public function isAvailable(): bool {}
+    public function connect(array $config): void {}
+    public function isConnected(): bool {}
+    public function disconnect(): void {}
+    public function run(string $sql, array $params = []): \PHDB_Result {}
+    public function stream(string $sql, array $params = []): \Generator {}
+    public function quoteIdentifier(string $name): string {}
+    public function tableExists(string $table): bool {}
+    public function columns(string $table): array {}
+    public function primaryKey(string $table): string {}
+    public function uniqueConstraints(string $table): array {}
+    public function normalizeColumn(string $mysqlDefinition): string {}
+    public function createTableSql(string $table, array $definitions): string {}
+    public function begin(): void {}
+    public function commit(): void {}
+    public function rollback(): void {}
+    public function probe(array $config): array {}
+}
+
 /** Source: library/PHDE.php */
 class PHDE {
     /** Initializes the error reporting settings. */
@@ -363,6 +434,15 @@ class PHEM {
     public static function smtpSend($from, $name, $to, $cc, $bcc, $subject, $message) {}
     /** Display the SMTP log. */
     public static function showLog() {}
+    /** Queue an SMTP email for asynchronous delivery through the local console queue. */
+    public static function queue($from, $name, $to, $cc, $bcc, $subject, $message, $delay = 0, $tries = 3) {}
+    /** Restore a queued SMTP configuration and deliver one email message. */
+    public static function queueSend(array $payload) {}
+}
+
+/** Source: library/PHEM.php */
+class PHEM_MailQueueHandler {
+    public static function handle(array $payload): void {}
 }
 
 /** Source: library/PHEV.php */
@@ -429,6 +509,10 @@ class PHJC {
     public static function metaPreset(string $type, array $data = []): void {}
     public static function breadcrumb(array $crumbs): void {}
     public static function reset() {}
+    /** Return true only the first time a given key is seen in this request. */
+    public static function once(string $key): bool {}
+    /** Merge a conditional class map into a class string (Blade-style @class). */
+    public static function classes(array $map): string {}
     public static function head(array $data) {}
     public static function buildHead() {}
     public static function newHTML($tag = NULL, $attributes = [], $content = '') {}
@@ -529,6 +613,21 @@ class PHJS {
     public static function alert($msg): string {}
     public static function fetch(string $url, array $opts = []): string {}
     public static function raw(string $code): string {}
+    public static function confirm(string $message): string {}
+    public static function prompt(string $message, string $default = ''): string {}
+    public static function open(string $url, string $target = '_blank', string $features = ''): string {}
+    public static function back(): string {}
+    public static function print(): string {}
+    public static function focus(string $selector): string {}
+    public static function blur(string $selector): string {}
+    public static function scrollTo(string $selector, string $behavior = 'smooth'): string {}
+    public static function copy(mixed $text): string {}
+    public static function stopPropagation(string $eventVar = 'e'): string {}
+    public static function matchMedia(string $query): string {}
+    public static function raf(mixed $callback): string {}
+    public static function geolocation(mixed $onSuccess, array $options = []): string {}
+    public static function debounce(mixed $callback, int $wait = 250): string {}
+    public static function throttle(mixed $callback, int $wait = 250): string {}
     public static function appReady(string $code): string {}
     public static function appNavigate(string $url): string {}
     public static function appLink(string $url): string {}
@@ -777,7 +876,7 @@ class PHMO {
 /** Source: library/PHOB.php */
 class PHOB {
     public static function capability(): array {}
-    /** Protect a PHP file by generating a secure, obfuscated output file */
+    /** Build protected output from one or more PHP files using the phob extension. */
     public static function build(array|string $input, array|string $output, array $skip = [], array $skipName = [], array $customName = [], array $config = []) {}
     /** Execute a PHOB-protected file after verifying security constraints */
     public static function use(string $file, string $lisense) {}
@@ -1330,7 +1429,7 @@ class PHSE {
     public static function remove($key) {}
     /** সেশন ভ্যালু পাওয়া। */
     public static function get($key, $default = NULL) {}
-    /** সেশন ভেরিয়েবলটি ? */
+    /** সেশন ভেরিয়েবলটি অ্যাক্টিভ এবং ভ্যালিড কিনা তা চেক করা। */
     public static function isActive($key) {}
     /** সব সেশন ভেরিয়েবল ক্লিন করা। */
     public static function expireAll() {}
@@ -1589,6 +1688,10 @@ function aside(...$a): \PHML {}
 function audio(...$a): \PHML {}
 function avatar(...$a): \PHML {}
 function b(...$a): \PHML {}
+function base(...$a): \PHML {}
+function bdi(...$a): \PHML {}
+function bdo(...$a): \PHML {}
+function bidirectional(...$a): \PHML {}
 function bld(...$a): \PHML {}
 function block(...$a): \PHML {}
 function blockquote(...$a): \PHML {}
@@ -1603,6 +1706,7 @@ function bullets(...$a): \PHML {}
 function bullet_list(...$a): \PHML {}
 function button(...$a): \PHML {}
 function c(...$a): \PHML {}
+function canvas(...$a): \PHML {}
 function caption(...$a): \PHML {}
 function cell(...$a): \PHML {}
 function chapter(...$a): \PHML {}
@@ -1611,6 +1715,7 @@ function choice(...$a): \PHML {}
 function chooser(...$a): \PHML {}
 function circle(...$a): \PHML {}
 function citation(...$a): \PHML {}
+function cite(...$a): \PHML {}
 function click(...$a): \PHML {}
 function clip(...$a): \PHML {}
 function cmd(...$a): \PHML {}
@@ -1625,20 +1730,27 @@ function content(...$a): \PHML {}
 function css(...$a): \PHML {}
 function css_link(...$a): \PHML {}
 function d(...$a): \PHML {}
+function data(...$a): \PHML {}
+function datalist(...$a): \PHML {}
+function datetime(...$a): \PHML {}
 function dd(...$a): \PHML {}
 function def(...$a): \PHML {}
+function definition(...$a): \PHML {}
 function definitions(...$a): \PHML {}
+function del(...$a): \PHML {}
 function deleted(...$a): \PHML {}
 function desc(...$a): \PHML {}
 function description(...$a): \PHML {}
 function description_list(...$a): \PHML {}
 function details(...$a): \PHML {}
+function dfn(...$a): \PHML {}
 function dialog(...$a): \PHML {}
 function div(...$a): \PHML {}
 function divider(...$a): \PHML {}
 function division(...$a): \PHML {}
 function dlist(...$a): \PHML {}
 function doc(...$a): \PHML {}
+function draw(...$a): \PHML {}
 function drawer(...$a): \PHML {}
 function dropdown(...$a): \PHML {}
 function dt(...$a): \PHML {}
@@ -1646,6 +1758,7 @@ function dv(...$a): \PHML {}
 function edit(...$a): \PHML {}
 function element(...$a): \PHML {}
 function em(...$a): \PHML {}
+function embed(...$a): \PHML {}
 function emphasis(...$a): \PHML {}
 function enter(...$a): \PHML {}
 function entry(...$a): \PHML {}
@@ -1668,6 +1781,7 @@ function frame(...$a): \PHML {}
 function frm(...$a): \PHML {}
 function g(...$a): \PHML {}
 function gap(...$a): \PHML {}
+function gauge(...$a): \PHML {}
 function go(...$a): \PHML {}
 function graphic(...$a): \PHML {}
 function grid(...$a): \PHML {}
@@ -1685,8 +1799,10 @@ function head3(...$a): \PHML {}
 function head4(...$a): \PHML {}
 function head5(...$a): \PHML {}
 function head6(...$a): \PHML {}
+function hgroup(...$a): \PHML {}
 function highlight(...$a): \PHML {}
 function horizontal_rule(...$a): \PHML {}
+function hotspot(...$a): \PHML {}
 function hr(...$a): \PHML {}
 function href(...$a): \PHML {}
 function html(...$a): \PHML {}
@@ -1704,10 +1820,14 @@ function info(...$a): \PHML {}
 function inline(...$a): \PHML {}
 function inp(...$a): \PHML {}
 function input(...$a): \PHML {}
+function ins(...$a): \PHML {}
+function inserted(...$a): \PHML {}
 function italic(...$a): \PHML {}
 function item(...$a): \PHML {}
 function javascript(...$a): \PHML {}
 function js(...$a): \PHML {}
+function kbd(...$a): \PHML {}
+function keyboard(...$a): \PHML {}
 function label(...$a): \PHML {}
 function lbl(...$a): \PHML {}
 function legend(...$a): \PHML {}
@@ -1717,10 +1837,13 @@ function lines(...$a): \PHML {}
 function line_break(...$a): \PHML {}
 function location(...$a): \PHML {}
 function main(...$a): \PHML {}
+function map(...$a): \PHML {}
 function mark(...$a): \PHML {}
 function media(...$a): \PHML {}
+function menu(...$a): \PHML {}
 function meta(...$a): \PHML {}
 function metadata(...$a): \PHML {}
+function meter(...$a): \PHML {}
 function modal(...$a): \PHML {}
 function movie(...$a): \PHML {}
 function music(...$a): \PHML {}
@@ -1729,8 +1852,10 @@ function navbar(...$a): \PHML {}
 function navigation(...$a): \PHML {}
 function newline(...$a): \PHML {}
 function node(...$a): \PHML {}
+function noscript(...$a): \PHML {}
 function note(...$a): \PHML {}
 function numbered(...$a): \PHML {}
+function object(...$a): \PHML {}
 function ol(...$a): \PHML {}
 function olist(...$a): \PHML {}
 function opt(...$a): \PHML {}
@@ -1739,6 +1864,7 @@ function option(...$a): \PHML {}
 function options(...$a): \PHML {}
 function ordered(...$a): \PHML {}
 function orderedList(...$a): \PHML {}
+function output(...$a): \PHML {}
 function overlay(...$a): \PHML {}
 function p(...$a): \PHML {}
 function page_header(...$a): \PHML {}
@@ -1746,6 +1872,7 @@ function page_top(...$a): \PHML {}
 function panel(...$a): \PHML {}
 function para(...$a): \PHML {}
 function paragraph(...$a): \PHML {}
+function param(...$a): \PHML {}
 function part(...$a): \PHML {}
 function path(...$a): \PHML {}
 function phjs($human) {}
@@ -1764,18 +1891,26 @@ function post(...$a): \PHML {}
 function pre(...$a): \PHML {}
 function preformatted(...$a): \PHML {}
 function press(...$a): \PHML {}
+function progress(...$a): \PHML {}
 function push(...$a): \PHML {}
+function q(...$a): \PHML {}
+function quotation(...$a): \PHML {}
 function quote(...$a): \PHML {}
 function r(...$a): \PHML {}
 function rect(...$a): \PHML {}
 function ref(...$a): \PHML {}
 function requireDirectory($directory) {}
 function resource(...$a): \PHML {}
+function result(...$a): \PHML {}
 function root(...$a): \PHML {}
 function row(...$a): \PHML {}
 function rows(...$a): \PHML {}
+function rp(...$a): \PHML {}
+function rt(...$a): \PHML {}
+function ruby(...$a): \PHML {}
 function rule(...$a): \PHML {}
 function s(...$a): \PHML {}
+function samp(...$a): \PHML {}
 function script(...$a): \PHML {}
 function sec(...$a): \PHML {}
 function section(...$a): \PHML {}
@@ -1786,6 +1921,7 @@ function separator(...$a): \PHML {}
 function sheet(...$a): \PHML {}
 function short(...$a): \PHML {}
 function sidebar(...$a): \PHML {}
+function slot(...$a): \PHML {}
 function small(...$a): \PHML {}
 function snippet(...$a): \PHML {}
 function sound(...$a): \PHML {}
@@ -1797,6 +1933,7 @@ function statement(...$a): \PHML {}
 function steps(...$a): \PHML {}
 function story(...$a): \PHML {}
 function strike(...$a): \PHML {}
+function strikethrough(...$a): \PHML {}
 function strong(...$a): \PHML {}
 function style(...$a): \PHML {}
 function stylesheet(...$a): \PHML {}
@@ -1858,6 +1995,7 @@ function video(...$a): \PHML {}
 function visual(...$a): \PHML {}
 function vline(...$a): \PHML {}
 function vr(...$a): \PHML {}
+function wbr(...$a): \PHML {}
 function word(...$a): \PHML {}
 function wrap(...$a): \PHML {}
 function wrapper(...$a): \PHML {}
@@ -1876,6 +2014,10 @@ function _aside(...$a): \PHML {}
 function _audio(...$a): \PHML {}
 function _avatar(...$a): \PHML {}
 function _b(...$a): \PHML {}
+function _base(...$a): \PHML {}
+function _bdi(...$a): \PHML {}
+function _bdo(...$a): \PHML {}
+function _bidirectional(...$a): \PHML {}
 function _bld(...$a): \PHML {}
 function _block(...$a): \PHML {}
 function _blockquote(...$a): \PHML {}
@@ -1891,6 +2033,7 @@ function _bullets(...$a): \PHML {}
 function _bullet_list(...$a): \PHML {}
 function _button(...$a): \PHML {}
 function _c(...$a): \PHML {}
+function _canvas(...$a): \PHML {}
 function _caption(...$a): \PHML {}
 function _cell(...$a): \PHML {}
 function _chapter(...$a): \PHML {}
@@ -1899,6 +2042,7 @@ function _choice(...$a): \PHML {}
 function _chooser(...$a): \PHML {}
 function _circle(...$a): \PHML {}
 function _citation(...$a): \PHML {}
+function _cite(...$a): \PHML {}
 function _click(...$a): \PHML {}
 function _clip(...$a): \PHML {}
 function _cmd(...$a): \PHML {}
@@ -1913,14 +2057,20 @@ function _content(...$a): \PHML {}
 function _css(...$a): \PHML {}
 function _css_link(...$a): \PHML {}
 function _d(...$a): \PHML {}
+function _data(...$a): \PHML {}
+function _datalist(...$a): \PHML {}
+function _datetime(...$a): \PHML {}
 function _dd(...$a): \PHML {}
 function _def(...$a): \PHML {}
+function _definition(...$a): \PHML {}
 function _definitions(...$a): \PHML {}
+function _del(...$a): \PHML {}
 function _deleted(...$a): \PHML {}
 function _desc(...$a): \PHML {}
 function _description(...$a): \PHML {}
 function _description_list(...$a): \PHML {}
 function _details(...$a): \PHML {}
+function _dfn(...$a): \PHML {}
 function _dialog(...$a): \PHML {}
 function _div(...$a): \PHML {}
 function _divider(...$a): \PHML {}
@@ -1928,6 +2078,7 @@ function _division(...$a): \PHML {}
 function _dl(...$a): \PHML {}
 function _dlist(...$a): \PHML {}
 function _doc(...$a): \PHML {}
+function _draw(...$a): \PHML {}
 function _drawer(...$a): \PHML {}
 function _dropdown(...$a): \PHML {}
 function _dt(...$a): \PHML {}
@@ -1935,6 +2086,7 @@ function _dv(...$a): \PHML {}
 function _edit(...$a): \PHML {}
 function _element(...$a): \PHML {}
 function _em(...$a): \PHML {}
+function _embed(...$a): \PHML {}
 function _emphasis(...$a): \PHML {}
 function _enter(...$a): \PHML {}
 function _entry(...$a): \PHML {}
@@ -1957,6 +2109,7 @@ function _frame(...$a): \PHML {}
 function _frm(...$a): \PHML {}
 function _g(...$a): \PHML {}
 function _gap(...$a): \PHML {}
+function _gauge(...$a): \PHML {}
 function _go(...$a): \PHML {}
 function _graphic(...$a): \PHML {}
 function _grid(...$a): \PHML {}
@@ -1975,8 +2128,10 @@ function _head4(...$a): \PHML {}
 function _head5(...$a): \PHML {}
 function _head6(...$a): \PHML {}
 function _header(...$a): \PHML {}
+function _hgroup(...$a): \PHML {}
 function _highlight(...$a): \PHML {}
 function _horizontal_rule(...$a): \PHML {}
+function _hotspot(...$a): \PHML {}
 function _hr(...$a): \PHML {}
 function _href(...$a): \PHML {}
 function _html(...$a): \PHML {}
@@ -1993,10 +2148,15 @@ function _info(...$a): \PHML {}
 function _inline(...$a): \PHML {}
 function _inp(...$a): \PHML {}
 function _input(...$a): \PHML {}
+function _ins(...$a): \PHML {}
+function _inserted(...$a): \PHML {}
 function _italic(...$a): \PHML {}
 function _item(...$a): \PHML {}
 function _javascript(...$a): \PHML {}
 function _js(...$a): \PHML {}
+function _kbd(...$a): \PHML {}
+function _key(...$a): \PHML {}
+function _keyboard(...$a): \PHML {}
 function _label(...$a): \PHML {}
 function _lbl(...$a): \PHML {}
 function _legend(...$a): \PHML {}
@@ -2008,10 +2168,13 @@ function _link(...$a): \PHML {}
 function _list(...$a): \PHML {}
 function _location(...$a): \PHML {}
 function _main(...$a): \PHML {}
+function _map(...$a): \PHML {}
 function _mark(...$a): \PHML {}
 function _media(...$a): \PHML {}
+function _menu(...$a): \PHML {}
 function _meta(...$a): \PHML {}
 function _metadata(...$a): \PHML {}
+function _meter(...$a): \PHML {}
 function _modal(...$a): \PHML {}
 function _movie(...$a): \PHML {}
 function _music(...$a): \PHML {}
@@ -2020,8 +2183,10 @@ function _navbar(...$a): \PHML {}
 function _navigation(...$a): \PHML {}
 function _newline(...$a): \PHML {}
 function _node(...$a): \PHML {}
+function _noscript(...$a): \PHML {}
 function _note(...$a): \PHML {}
 function _numbered(...$a): \PHML {}
+function _object(...$a): \PHML {}
 function _ol(...$a): \PHML {}
 function _olist(...$a): \PHML {}
 function _opt(...$a): \PHML {}
@@ -2030,6 +2195,7 @@ function _option(...$a): \PHML {}
 function _options(...$a): \PHML {}
 function _ordered(...$a): \PHML {}
 function _orderedList(...$a): \PHML {}
+function _output(...$a): \PHML {}
 function _overlay(...$a): \PHML {}
 function _p(...$a): \PHML {}
 function _page_header(...$a): \PHML {}
@@ -2037,6 +2203,7 @@ function _page_top(...$a): \PHML {}
 function _panel(...$a): \PHML {}
 function _para(...$a): \PHML {}
 function _paragraph(...$a): \PHML {}
+function _param(...$a): \PHML {}
 function _part(...$a): \PHML {}
 function _path(...$a): \PHML {}
 function _photo(...$a): \PHML {}
@@ -2052,17 +2219,25 @@ function _post(...$a): \PHML {}
 function _pre(...$a): \PHML {}
 function _preformatted(...$a): \PHML {}
 function _press(...$a): \PHML {}
+function _progress(...$a): \PHML {}
 function _push(...$a): \PHML {}
+function _q(...$a): \PHML {}
+function _quotation(...$a): \PHML {}
 function _quote(...$a): \PHML {}
 function _r(...$a): \PHML {}
 function _rect(...$a): \PHML {}
 function _ref(...$a): \PHML {}
 function _resource(...$a): \PHML {}
+function _result(...$a): \PHML {}
 function _root(...$a): \PHML {}
 function _row(...$a): \PHML {}
 function _rows(...$a): \PHML {}
+function _rp(...$a): \PHML {}
+function _rt(...$a): \PHML {}
+function _ruby(...$a): \PHML {}
 function _rule(...$a): \PHML {}
 function _s(...$a): \PHML {}
+function _samp(...$a): \PHML {}
 function _script(...$a): \PHML {}
 function _sec(...$a): \PHML {}
 function _section(...$a): \PHML {}
@@ -2073,6 +2248,7 @@ function _separator(...$a): \PHML {}
 function _sheet(...$a): \PHML {}
 function _short(...$a): \PHML {}
 function _sidebar(...$a): \PHML {}
+function _slot(...$a): \PHML {}
 function _small(...$a): \PHML {}
 function _snippet(...$a): \PHML {}
 function _sound(...$a): \PHML {}
@@ -2084,6 +2260,7 @@ function _statement(...$a): \PHML {}
 function _steps(...$a): \PHML {}
 function _story(...$a): \PHML {}
 function _strike(...$a): \PHML {}
+function _strikethrough(...$a): \PHML {}
 function _strong(...$a): \PHML {}
 function _style(...$a): \PHML {}
 function _stylesheet(...$a): \PHML {}
@@ -2111,6 +2288,7 @@ function _tfoot(...$a): \PHML {}
 function _th(...$a): \PHML {}
 function _thead(...$a): \PHML {}
 function _thumb(...$a): \PHML {}
+function _time(...$a): \PHML {}
 function _tiny(...$a): \PHML {}
 function _title(...$a): \PHML {}
 function _title1(...$a): \PHML {}
@@ -2145,6 +2323,7 @@ function _video(...$a): \PHML {}
 function _visual(...$a): \PHML {}
 function _vline(...$a): \PHML {}
 function _vr(...$a): \PHML {}
+function _wbr(...$a): \PHML {}
 function _word(...$a): \PHML {}
 function _wrap(...$a): \PHML {}
 function _wrapper(...$a): \PHML {}

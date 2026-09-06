@@ -2,7 +2,7 @@
   "name": "mystack-helper",
   "displayName": "MyStack Framework Helper",
   "description": "Official VS Code language support, source-aware stubs, snippets and workspace tools for MyStack Framework.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "Sakibweb",
   "license": "MIT",
   "author": {
@@ -32,7 +32,12 @@
     "onCommand:mystack.refreshStubs",
     "onCommand:mystack.openDocumentation",
     "onCommand:mystack.doctor",
+    "onCommand:mystack.audit",
     "onCommand:mystack.smoke",
+    "onCommand:mystack.routes",
+    "onCommand:mystack.serve",
+    "onCommand:mystack.generate",
+    "onCommand:mystack.cacheClear",
     "onLanguage:php"
   ],
   "main": "./extension.js",
@@ -64,7 +69,12 @@
       { "command": "mystack.refreshStubs", "title": "MyStack: Refresh IDE Stubs", "category": "MyStack" },
       { "command": "mystack.openDocumentation", "title": "MyStack: Open Documentation", "category": "MyStack" },
       { "command": "mystack.doctor", "title": "MyStack: Run Doctor", "category": "MyStack" },
+      { "command": "mystack.audit", "title": "MyStack: Run Audit", "category": "MyStack" },
       { "command": "mystack.smoke", "title": "MyStack: Run Smoke Test", "category": "MyStack" },
+      { "command": "mystack.routes", "title": "MyStack: List Routes", "category": "MyStack" },
+      { "command": "mystack.serve", "title": "MyStack: Serve Dev Server", "category": "MyStack" },
+      { "command": "mystack.generate", "title": "MyStack: Generate Scaffold", "category": "MyStack" },
+      { "command": "mystack.cacheClear", "title": "MyStack: Clear Component Cache", "category": "MyStack" },
       { "command": "mystack.showCommands", "title": "MyStack: Show Commands", "category": "MyStack" }
     ],
     "configuration": {
@@ -95,7 +105,12 @@
         { "command": "mystack.refreshStubs" },
         { "command": "mystack.openDocumentation" },
         { "command": "mystack.doctor" },
-        { "command": "mystack.smoke" }
+        { "command": "mystack.audit" },
+        { "command": "mystack.smoke" },
+        { "command": "mystack.routes" },
+        { "command": "mystack.serve" },
+        { "command": "mystack.generate" },
+        { "command": "mystack.cacheClear" }
       ]
     }
   }

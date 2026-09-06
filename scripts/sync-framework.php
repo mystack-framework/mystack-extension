@@ -81,7 +81,7 @@ function parametersText(ReflectionFunctionAbstract $function): string {
 
 function summaryText(ReflectionFunctionAbstract $function): string {
     $doc = $function->getDocComment() ?: '';
-    foreach (preg_split('/\R/', $doc) ?: [] as $line) {
+    foreach (preg_split('/\R/u', $doc) ?: [] as $line) {
         $line = trim((string) preg_replace('/^\s*\/\*\*|\*\/\s*$|^\s*\*\s?/', '', $line));
         if ($line !== '' && !str_starts_with($line, '@')) return preg_replace('/\s+/', ' ', $line) ?: $line;
     }
